@@ -1,0 +1,24 @@
+language: node_js
+
+node_js:
+  - 13
+
+services:
+  - docker
+
+# pre-testing installs
+install:
+  - echo "nothing need to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no test"
+
+script:
+  - docker --version # print the version for logging
+  - docker build -t simple-reverse-proxy .
+  - docker tag simple-reverse-proxy hosamsaleh/simple-reverse-proxy:latest
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --pasword-stdin
+  - docker push hosamsaleh/simple-reverse-proxy
