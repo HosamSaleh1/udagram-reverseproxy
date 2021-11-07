@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: hosamsaleh/simple-reverse-proxy
+        image: hosamsaleh/udagram-reverseproxy
         imagePullPolicy: Always
         resources:
           requests:
